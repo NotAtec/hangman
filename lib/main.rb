@@ -2,16 +2,16 @@
 
 require 'pry-byebug'
 
+# Module with methods to manage loading & creating rounds
 module RoundManagement
-  def load_round
-
-  end
+  def load_round; end
 
   def new_round
-    Round.new()
+    Round.new
   end
 end
 
+# Module with methods to get & validate player input
 module PlayerInput
   def valid_player_letter
     puts 'Input your guess, a letter from A to Z'
@@ -40,6 +40,7 @@ module PlayerInput
   end
 end
 
+# Round class includes all variables that can be saved & (Will) includes method to load a round from file on disk.
 class Round
   attr_reader :letters, :word
 
@@ -56,12 +57,13 @@ class Round
     loop do
       sample = File.readlines('5desk.txt').sample.chomp
       next if sample.length < 5 || sample.length > 12
-      
+
       return sample
     end
   end
 end
 
+# Main class containing all components related to playing the (Saved) round
 class Game
   include RoundManagement
   include PlayerInput
@@ -73,8 +75,7 @@ class Game
   def play
     loop do
       guess = valid_player_letter
-      next if guess == nil
-
+      next if guess.nil?
 
     end
   end
