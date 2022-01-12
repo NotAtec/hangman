@@ -42,13 +42,20 @@ end
 
 # Round class includes all variables that can be saved & (Will) includes method to load a round from file on disk.
 class Round
-  attr_reader :letters, :word
+  attr_reader :letters
+  attr_accessor :wrong_guesses
 
   def initialize
     @word = grab_word
+    @word_array = @word.to_a
+    p @word
     @wrong_guesses = 10
     @incorrect_letters = []
     @letters = []
+  end
+
+  def letter_included?(letter)
+    @word_array.include?(letter)
   end
 
   private
@@ -77,6 +84,7 @@ class Game
       guess = valid_player_letter
       next if guess.nil?
 
+      @round.letter_included?(guess) ? check_pos : @round.wrong_guesses -= 1
     end
   end
 end
