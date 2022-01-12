@@ -9,6 +9,8 @@ module RoundManagement
   def new_round
     Round.new
   end
+
+  def save_round; end
 end
 
 # Module with methods to get & validate player input
@@ -43,7 +45,7 @@ end
 # Round class includes all variables that can be saved & (Will) includes method to load a round from file on disk.
 class Round
   attr_reader :letters
-  attr_accessor :wrong_guesses
+  attr_accessor :wrong_guesses, :incorrect_letters
 
   def initialize
     @word = grab_word
@@ -55,7 +57,11 @@ class Round
   end
 
   def letter_included?(letter)
+    @letters << letter
     @word_array.include?(letter)
+  end
+
+  def letter_position(letter)
   end
 
   private
@@ -83,14 +89,19 @@ class Game
     until @round.wrong_guesses.zero?
       guess = valid_player_letter
       next if guess.nil?
+      next unless included?(guess)
 
-      unless @round.letter_included?(guess)
-        @round.wrong_guesses -= 1
-        next
-      end
-
-      
+      @round.letter_position(guess)
     end
+  end
+
+  private
+
+  def included?(guess)
+    return true if @round.letter_included?(guess)
+
+    @round.wrong_guesses -= 1
+    @round.incorrect_letters << guess
   end
 end
 
