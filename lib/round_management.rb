@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'pry-byebug'
+
 # Module with methods to manage loading & creating rounds
 module RoundManagement
   def load_round
