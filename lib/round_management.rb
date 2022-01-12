@@ -10,7 +10,9 @@ module RoundManagement
   end
 
   def save_round
-    File.open("saves/#{random_string}.yml", 'w') { |f| f.puts YAML.dump(@round_instance) }
+    string = random_string
+    File.open("saves/#{string}.yml", 'w') { |f| f.puts YAML.dump(@round_instance) }
+    abort("Your round was saved as #{string}.yml in the /saves/ folder")
   end
 
   def random_string
