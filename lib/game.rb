@@ -27,6 +27,7 @@ class Game
 
       show_status
       guess = valid_player_letter
+      save_round if guess == 'save'
       next if guess.nil?
       next unless included?(guess)
 

@@ -13,7 +13,7 @@ module RoundManagement
     end
 
     save = Dir.glob('saves/*.{yml}')[idx.to_i]
-    @round = YAML.safe_load(File.read(save))
+    @round = YAML.load(File.read(save))
     @round
   end
 
@@ -22,6 +22,7 @@ module RoundManagement
   end
 
   def save_round
+    string = random_string
     string = random_string while File.exist?("saves/#{string}.yml")
 
     File.open("saves/#{string}.yml", 'w') { |f| f.puts YAML.dump(@round) }
@@ -31,7 +32,7 @@ module RoundManagement
   def random_string
     random = []
     3.times { random << grab_word }
-    random.join('')
+    random.map(&:capitalize).join
   end
 
   def grab_word

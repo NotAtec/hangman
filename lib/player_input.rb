@@ -3,8 +3,11 @@
 # Module with methods to get & validate player input
 module PlayerInput
   def valid_player_letter
-    puts 'Input your guess, a letter from A to Z'
+    puts 'Input your guess, a letter from A to Z (Type \'SAVE\' to save the game)'
     g = gets.chomp
+    return 'save' if g == 'SAVE'
+
+    g.downcase!
     return nil if invalid?(g) || already_played?(g)
 
     g
