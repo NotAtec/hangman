@@ -37,7 +37,7 @@ module RoundManagement
 
   def grab_word
     loop do
-      sample = File.readlines('5desk.txt').sample.chomp
+      sample = File.readlines('5desk.txt').sample.chomp.downcase
       next if sample.length < 5 || sample.length > 12
 
       return sample
