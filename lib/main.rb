@@ -80,11 +80,16 @@ class Game
   end
 
   def play
-    until @round.wrong_guesses.zero? do
+    until @round.wrong_guesses.zero?
       guess = valid_player_letter
       next if guess.nil?
 
-      @round.letter_included?(guess) ? check_pos : @round.wrong_guesses -= 1
+      unless @round.letter_included?(guess)
+        @round.wrong_guesses -= 1
+        next
+      end
+
+      
     end
   end
 end
