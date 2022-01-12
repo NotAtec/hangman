@@ -50,7 +50,7 @@ class Round
   def initialize
     @word = grab_word
     @word_array = @word.split('')
-    @guessed_word = Array.new(@word_array.length, "_")
+    @guessed_word = Array.new(@word_array.length, '_')
     p @word
     @wrong_guesses = 10
     @incorrect_letters = []
@@ -85,7 +85,7 @@ class Round
   end
 
   def correct_positions(letter)
-    @word_array.each_index.select{|i| @word_array[i] == letter}
+    @word_array.each_index.select { |i| @word_array[i] == letter }
   end
 end
 
