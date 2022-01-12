@@ -50,6 +50,7 @@ class Round
   def initialize
     @word = grab_word
     @word_array = @word.split('')
+    @guessed_word = Array.new(@word_array.length, "_")
     p @word
     @wrong_guesses = 10
     @incorrect_letters = []
@@ -61,7 +62,11 @@ class Round
     @word_array.include?(letter)
   end
 
-  def letter_position(letter)
+  def show_position(letter)
+    positions = correct_positions(letter)
+    positions.each do |pos|
+      @guessed_word[pos] = @word_array[pos]
+    end
   end
 
   private
@@ -73,6 +78,10 @@ class Round
 
       return sample
     end
+  end
+
+  def correct_positions(letter)
+    @word_array.each_index.select{|i| @word_array[i] == letter}
   end
 end
 
@@ -91,7 +100,7 @@ class Game
       next if guess.nil?
       next unless included?(guess)
 
-      @round.letter_position(guess)
+      @round.show_position(guess)
     end
   end
 
