@@ -22,7 +22,8 @@ module RoundManagement
   end
 
   def save_round
-    string = random_string
+    string = random_string while File.exist?("saves/#{string}.yml")
+
     File.open("saves/#{string}.yml", 'w') { |f| f.puts YAML.dump(@round) }
     abort("Your round was saved as #{string}.yml in the /saves/ folder")
   end
