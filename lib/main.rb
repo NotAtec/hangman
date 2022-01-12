@@ -2,6 +2,16 @@
 
 require 'pry-byebug'
 
+module RoundManagement
+  def load_round
+
+  end
+
+  def new_round
+    Round.new()
+  end
+end
+
 class Round
   attr_reader :letters, :word
 
@@ -21,5 +31,14 @@ class Round
       
       return sample
     end
+  end
+end
+
+class Game
+  include RoundManagement
+  include PlayerInput
+
+  def initialize(load)
+    @round = load ? load_round : new_round
   end
 end
