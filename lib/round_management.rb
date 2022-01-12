@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'pry-byebug'
 # Module with methods to manage loading & creating rounds
 module RoundManagement
   def load_round
@@ -19,12 +19,12 @@ module RoundManagement
 
   def new_round
     @round = Round.new
+    @round
   end
 
   def save_round
     string = random_string
     string = random_string while File.exist?("saves/#{string}.yml")
-
     File.open("saves/#{string}.yml", 'w') { |f| f.puts YAML.dump(@round) }
     abort("Your round was saved as #{string}.yml in the /saves/ folder")
   end
