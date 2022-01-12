@@ -44,7 +44,7 @@ end
 
 # Round class includes all variables that can be saved & (Will) includes method to load a round from file on disk.
 class Round
-  attr_reader :letters, :word
+  attr_reader :letters, :word, :guessed_word
   attr_accessor :wrong_guesses, :incorrect_letters
 
   def initialize
@@ -100,10 +100,11 @@ class Game
 
   def play
     result = main_loop
+    show_status
     if result
-      puts "Congrats! You have won the game, with #{@round.wrong_guesses} incorrect guesses remaining!"
+      puts "\nCongrats! You have won the game, with #{@round.wrong_guesses} incorrect guesses remaining!"
     else
-      puts "Unfortunately, you lost! The word was: #{@round.word}"
+      puts "\nUnfortunately, you lost! The word was: #{@round.word}"
     end
   end
 
@@ -113,6 +114,7 @@ class Game
     until @round.wrong_guesses.zero?
       return true if @round.won?
 
+      show_status
       guess = valid_player_letter
       next if guess.nil?
       next unless included?(guess)
@@ -127,6 +129,15 @@ class Game
 
     @round.wrong_guesses -= 1
     @round.incorrect_letters << guess
+  end
+
+  def show_status
+    letter_string = @round.incorrect_letters.join(' ')
+    word_string = @round.guessed_word.join(' ')
+
+    puts "\nIncorrect Guesses Remaining: #{@round.wrong_guesses}"
+    puts "Incorrect Letters: #{letter_string}"
+    puts "Known Letters: #{word_string}\n"
   end
 end
 
