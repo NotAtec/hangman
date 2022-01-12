@@ -44,7 +44,7 @@ end
 
 # Round class includes all variables that can be saved & (Will) includes method to load a round from file on disk.
 class Round
-  attr_reader :letters
+  attr_reader :letters, :word
   attr_accessor :wrong_guesses, :incorrect_letters
 
   def initialize
@@ -99,7 +99,12 @@ class Game
   end
 
   def play
-    main_loop ? game_won : game_lost
+    result = main_loop
+    if result
+      puts "Congrats! You have won the game, with #{@round.wrong_guesses} incorrect guesses remaining!"
+    else
+      puts "Unfortunately, you lost! The word was: #{@round.word}"
+    end
   end
 
   private
