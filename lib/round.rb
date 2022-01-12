@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Round class includes all variables that can be saved & (Will) includes method to load a round from file on disk.
 class Round
   include RoundManagement

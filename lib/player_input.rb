@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Module with methods to get & validate player input
 module PlayerInput
   def valid_player_letter

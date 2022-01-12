@@ -4,9 +4,9 @@
 module RoundManagement
   def load_round
     puts 'Choose the number matching your save-file'
-    Dir.glob('saves/*.{yml}').each_with_index { |f, i| puts "#{i} => #{f}"}
+    Dir.glob('saves/*.{yml}').each_with_index { |f, i| puts "#{i} => #{f}" }
     idx = gets.chomp
-    
+
     unless idx.to_i.to_s == idx
       puts 'That\'s not a number, try again!'
       return load_round
