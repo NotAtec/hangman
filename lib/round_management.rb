@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'yaml'
 # Module with methods to manage loading & creating rounds
 module RoundManagement
   def load_round
