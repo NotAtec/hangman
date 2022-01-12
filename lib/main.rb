@@ -47,7 +47,7 @@ class Round
 
   def initialize
     @word = grab_word
-    @word_array = @word.to_a
+    @word_array = @word.split('')
     p @word
     @wrong_guesses = 10
     @incorrect_letters = []
@@ -80,7 +80,7 @@ class Game
   end
 
   def play
-    loop do
+    until @round.wrong_guesses.zero? do
       guess = valid_player_letter
       next if guess.nil?
 
@@ -91,12 +91,7 @@ end
 
 def load?
   puts 'Do you want to load a previously saved round? (y/n)'
-  input = gets.downcase.chomp
-  if input == 'y'
-    true
-  else
-    false
-  end
+  gets.downcase.chomp == 'y'
 end
 
 game = Game.new(load?)
