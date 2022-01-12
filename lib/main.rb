@@ -79,3 +79,6 @@ class Game
     end
   end
 end
+
+game = Game.new(load?)
+game.play
