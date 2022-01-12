@@ -69,6 +69,10 @@ class Round
     end
   end
 
+  def won?
+    @guessed_word == @word_array
+  end
+
   private
 
   def grab_word
@@ -95,16 +99,23 @@ class Game
   end
 
   def play
+    main_loop ? game_won : game_lost
+  end
+
+  private
+
+  def main_loop
     until @round.wrong_guesses.zero?
+      return true if @round.won?
+
       guess = valid_player_letter
       next if guess.nil?
       next unless included?(guess)
 
       @round.show_position(guess)
     end
+    false
   end
-
-  private
 
   def included?(guess)
     return true if @round.letter_included?(guess)
