@@ -1,6 +1,6 @@
-
 # Round class includes all variables that can be saved & (Will) includes method to load a round from file on disk.
 class Round
+  include RoundManagement
   attr_reader :letters, :word, :guessed_word
   attr_accessor :wrong_guesses, :incorrect_letters
 

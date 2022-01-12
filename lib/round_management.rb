@@ -3,15 +3,18 @@
 require 'date'
 # Module with methods to manage loading & creating rounds
 module RoundManagement
-  def load_round; end
+  def load_round
+    @round = YAML.load(File.read("saves/#{save}.yml"))
+    @round
+  end
 
   def new_round
-    @round_instance = Round.new
+    @round = Round.new
   end
 
   def save_round
     string = random_string
-    File.open("saves/#{string}.yml", 'w') { |f| f.puts YAML.dump(@round_instance) }
+    File.open("saves/#{string}.yml", 'w') { |f| f.puts YAML.dump(@round) }
     abort("Your round was saved as #{string}.yml in the /saves/ folder")
   end
 

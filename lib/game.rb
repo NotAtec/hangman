@@ -6,7 +6,7 @@ class Game
   include PlayerInput
 
   def initialize(load)
-    @round = load ? load_round : new_round
+    load ? load_round : new_round
   end
 
   def play

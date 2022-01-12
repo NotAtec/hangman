@@ -11,7 +11,5 @@ def load?
   gets.downcase.chomp == 'y'
 end
 
-binding.pry
-# game = Game.new(load?)
-# game.play
-p test
+game = Game.new(load?)
+game.play
