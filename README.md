@@ -1,7 +1,7 @@
 # Hangman
 A game of hangman to play in the console
 
-[Live Preview](https://google.com) <--
+[Live Preview](https://replit.com/@NotAtec/Hangman#main.rb) <--
 
 ## Game Description
 In this version of hangman, you're tasked with solving a 5 to 12 character random word, by guessing each letter. The length of the word is randomly chosen at startup. 
