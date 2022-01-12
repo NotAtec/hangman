@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'date'
 # Module with methods to manage loading & creating rounds
 module RoundManagement
   def load_round
@@ -9,7 +8,7 @@ module RoundManagement
     idx = gets.chomp
     
     unless idx.to_i.to_s == idx
-      puts 'That\'s not a number'
+      puts 'That\'s not a number, try again!'
       return load_round
     end
 
