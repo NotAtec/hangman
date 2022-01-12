@@ -89,5 +89,15 @@ class Game
   end
 end
 
+def load?
+  puts 'Do you want to load a previously saved round? (y/n)'
+  input = gets.downcase.chomp
+  if input == 'y'
+    true
+  else
+    false
+  end
+end
+
 game = Game.new(load?)
 game.play
