@@ -4,7 +4,17 @@ require 'date'
 # Module with methods to manage loading & creating rounds
 module RoundManagement
   def load_round
-    @round = YAML.load(File.read("saves/#{save}.yml"))
+    puts 'Choose the number matching your save-file'
+    Dir.glob('saves/*.{yml}').each_with_index { |f, i| puts "#{i} => #{f}"}
+    idx = gets.chomp
+    
+    unless idx.to_i.to_s == idx
+      puts 'That\'s not a number'
+      return load_round
+    end
+
+    save = Dir.glob('saves/*.{yml}')[idx.to_i]
+    @round = YAML.safe_load(File.read(save))
     @round
   end
 
