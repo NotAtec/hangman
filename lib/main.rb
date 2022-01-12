@@ -69,4 +69,13 @@ class Game
   def initialize(load)
     @round = load ? load_round : new_round
   end
+
+  def play
+    loop do
+      guess = valid_player_letter
+      next if guess == nil
+
+
+    end
+  end
 end
