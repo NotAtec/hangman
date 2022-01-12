@@ -12,6 +12,34 @@ module RoundManagement
   end
 end
 
+module PlayerInput
+  def valid_player_letter
+    puts 'Input your guess, a letter from A to Z'
+    g = gets.chomp
+    return nil if invalid?(g) || already_played?(g)
+
+    g
+  end
+
+  def invalid?(guess)
+    if guess.length == 1 && guess.downcase.match(/[a-z]/)
+      false
+    else
+      puts 'Please input only 1 letter, from A to Z'
+      true
+    end
+  end
+
+  def already_played?(guess)
+    if @round.letters.include?(guess)
+      puts 'Please input a character you haven\'t guessed before'
+      true
+    else
+      false
+    end
+  end
+end
+
 class Round
   attr_reader :letters, :word
 
