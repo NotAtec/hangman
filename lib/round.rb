@@ -9,7 +9,7 @@ class Round
   def initialize
     @word = grab_word
     @word_array = @word.split('')
-    @masked_word = Array.new(@word_array.length, '_')
+    @masked_word = Array.new(@word_array.length, '_').join('')
     @guesses_left = 10
     @incorrect_letters = []
     @letters = []
@@ -28,7 +28,7 @@ class Round
   end
 
   def won?
-    @masked_word == @word_array
+    @masked_word.split('') == @word_array
   end
 
   def correct_positions(letter)

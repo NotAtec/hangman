@@ -45,10 +45,9 @@ class Game
 
   def show_status
     incorrect_letters = @round.incorrect_letters.join(' ')
-    masked_word = @round.masked_word.join(' ')
 
     puts "\nIncorrect Guesses Remaining: #{@round.guesses_left}"
     puts "Incorrect Letters: #{incorrect_letters}"
-    puts "Known Letters: #{masked_word}\n"
+    puts "Known Letters: #{@round.masked_word}\n"
   end
 end
