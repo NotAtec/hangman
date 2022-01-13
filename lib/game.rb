@@ -13,7 +13,7 @@ class Game
     result = main_loop
     show_status
     if result
-      puts "\nCongrats! You have won the game, with #{@round.wrong_guesses} incorrect guesses remaining!"
+      puts "\nCongrats! You have won the game, with #{@round.guesses_left} incorrect guesses remaining!"
     else
       puts "\nUnfortunately, you lost! The word was: #{@round.word}"
     end
@@ -22,7 +22,7 @@ class Game
   private
 
   def main_loop
-    until @round.wrong_guesses.zero?
+    until @round.guesses_left.zero?
       return true if @round.won?
 
       show_status
@@ -39,16 +39,16 @@ class Game
   def included?(guess)
     return true if @round.letter_included?(guess)
 
-    @round.wrong_guesses -= 1
+    @round.guesses_left -= 1
     @round.incorrect_letters << guess
   end
 
   def show_status
-    letter_string = @round.incorrect_letters.join(' ')
-    word_string = @round.guessed_word.join(' ')
+    incorrect_letters = @round.incorrect_letters.join(' ')
+    masked_word = @round.masked_word.join(' ')
 
-    puts "\nIncorrect Guesses Remaining: #{@round.wrong_guesses}"
-    puts "Incorrect Letters: #{letter_string}"
-    puts "Known Letters: #{word_string}\n"
+    puts "\nIncorrect Guesses Remaining: #{@round.guesses_left}"
+    puts "Incorrect Letters: #{incorrect_letters}"
+    puts "Known Letters: #{masked_word}\n"
   end
 end
